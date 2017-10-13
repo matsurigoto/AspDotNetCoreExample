@@ -7,14 +7,21 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AspDotNetCoreExample.BaseModel;
+using AspDotNetCoreExample.Interface;
+using AspDotNetCoreExample.Services.Commands;
 
 namespace AspDotNetCoreExample
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -22,6 +29,8 @@ namespace AspDotNetCoreExample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IStudentQueries, StudentQueries>();
+            services.AddTransient<IStudentCommands, StudentCommands>();
             services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
             services.AddMvc();
         }

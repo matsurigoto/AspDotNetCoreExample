@@ -1,12 +1,13 @@
-﻿using AspDotNetCoreExample.ViewModels;
+﻿using AspDotNetCoreExample.Interface;
+using AspDotNetCoreExample.ViewModels;
 using System;
 using System.Collections.Generic;
 
 namespace AspDotNetCoreExample.Services.Commands
 {
-    public class StudentQueries
+    public class StudentQueries : IStudentQueries
     {
-        public StudentModel getStudentById(int studentId)
+        public StudentModel GetStudentById(int studentId)
         {
             return new StudentModel
             {
@@ -16,7 +17,7 @@ namespace AspDotNetCoreExample.Services.Commands
             };
         }
 
-        public List<StudentModel> getStudents()
+        public List<StudentModel> GetStudents()
         {
             List<StudentModel> list = new List<StudentModel>();
             list.Add(new StudentModel

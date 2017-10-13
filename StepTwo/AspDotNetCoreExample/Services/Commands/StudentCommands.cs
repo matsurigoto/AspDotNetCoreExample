@@ -1,9 +1,10 @@
-﻿using AspDotNetCoreExample.ViewModels;
+﻿using AspDotNetCoreExample.Interface;
+using AspDotNetCoreExample.ViewModels;
 using System;
 
 namespace AspDotNetCoreExample.Services.Commands
 {
-    public class StudentCommands
+    public class StudentCommands : IStudentCommands
     {
         public bool CreateStudent(StudentModel model)
         {

@@ -23,6 +23,7 @@ namespace AspDotNetCoreExample.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
+            ViewData["SMTP"] = _emailConfig.SMTP;
 
             return View();
         }
