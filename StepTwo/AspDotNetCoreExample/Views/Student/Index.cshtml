@@ -1,0 +1,14 @@
+﻿@using AspDotNetCoreExample.ViewModels
+@model List<StudentModel>
+
+@foreach(var item in Model)
+{
+    <div>
+        <p>
+            <a href="@Url.Action("Detail","Student", new { id = 10 })">
+                @item.Name
+            </a>
+        </p>
+        <p>年齡：@item.Age </p>
+    </div>
+}
