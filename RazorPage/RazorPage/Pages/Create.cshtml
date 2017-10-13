@@ -1,0 +1,27 @@
+﻿@page
+@model RazorPage.Pages.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h2>Create</h2>
+<p>
+    GetMessage: @Model.GetMessage
+</p>
+<p>
+    PostMessge:@Model.PostMessage
+</p>
+<p> 
+    Enter your name.
+</p>
+<div asp-validation-summary="All"></div>
+<form method="POST">
+    <div>Name: <input asp-for="Student.Name" /></div>
+    <input type="submit" />
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
